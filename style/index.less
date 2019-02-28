@@ -1,0 +1,93 @@
+.small-gutter {
+  margin: -0.5rem !important;
+}
+
+.small-gutter > div {
+  padding: 0.5rem !important;
+}
+
+.player-segment {
+  padding: 0.6rem 0.8rem !important;
+
+  transition: background-color 0.1s ease, border-color 0.1s ease;
+}
+
+.player-segment .player-name {
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.ui.label {
+  color: white !important;
+}
+
+.answer-button {
+
+}
+
+.answer-button > button {
+  margin-right: 1px !important;
+}
+
+.win-answer > .label {
+  border: 1px solid @yellow !important;
+  border-left: none !important;
+  background-color: mix(@yellow, @destMix, 25%) !important;
+}
+
+.ui.disabled.button.answer-button {
+  opacity: 1 !important;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+}
+
+.dead-player-segment {
+  opacity: 0.35;
+}
+
+.ui.button.blue.inverted {
+  border-color: #375a7f !important;
+  color: #375a7f;
+}
+
+.footer {
+  margin-top: 1rem;
+  background-color: #464545;
+  padding: 1rem;
+}
+
+h4 {
+  font-weight: bold !important;
+}
+
+// All classes for the outline of Player Segment
+// for the different colors
+@red: #E74C3C;
+@blue: #375a7f;
+@green: #2ECC40;
+@yellow: #F39C12;
+@destMix: #303030;
+@mixAmount: 15%;
+
+.player-segment.outline-red {
+  border: 1px solid @red !important;
+  background-color: mix(@red, @destMix, @mixAmount) !important;
+}
+
+.player-segment.outline-green {
+  border: 1px solid @green !important;
+  background-color: mix(@green, @destMix, @mixAmount) !important;
+}
+
+.player-segment.outline-blue {
+  border: 1px solid @blue !important;
+  background-color: mix(@blue, @destMix, @mixAmount) !important;
+}
+
+.player-segment.outline-yellow {
+  border: 1px solid @yellow !important;
+  background-color: mix(@yellow, @destMix, @mixAmount) !important;
+}

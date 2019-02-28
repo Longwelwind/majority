@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "strict": true,
+    "lib": ["es2015", "dom"],
+    "jsx": "react"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
