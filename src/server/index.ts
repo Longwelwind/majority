@@ -5,8 +5,13 @@ import {Request, Response} from "express";
 import createHttpApiRouter from "./http-api";
 import {createTables} from "./database/database";
 import createPrometheusRegistry from "./prometheusRegistry";
-
+import * as expressBasicAuth from "express-basic-auth";
 const PORT = process.env.PORT || 3000;
+const PROMETHEUS_PASSWORD = process.env.PROMETHEUS_PASSWORD || "default-password";
+if (PROMETHEUS_PASSWORD == "default-password") {
+	console.warn("/!\\ Prometheus password was left to the default value");
+	console.warn("/!\\ Set PROMETHEUS_PASSWORD env variable to change that");
+}
 
 const app = express();
 
@@ -31,7 +36,7 @@ async function main() {
 	// Serving the HTTP API
 	const httpApiRouter = createHttpApiRouter(globalServer);
 	app.use("/api", httpApiRouter, (req: Request, res: Response) => res.sendStatus(404));
-	app.use("/metrics", (req: Request, res: Response) => {
+	app.get("/metrics", expressBasicAuth({users: {"root": PROMETHEUS_PASSWORD}}), (req: Request, res: Response) => {
 		onRequest();
 		res.set("Content-Type", prometheusRegistry.contentType);
 		res.end(prometheusRegistry.metrics());
