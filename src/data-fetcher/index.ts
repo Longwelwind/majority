@@ -13,7 +13,7 @@ function atob(s: string) {
 	return Buffer.from(s, "base64").toString();
 }
 
-async function fetch(amount: number, category: string): Promise<{questions: string[], answers: string[]}> {
+async function fetch(amount: number, category: string): Promise<{questions: {question: string, real_answer: string}[], answers: string[]}> {
 	const response = await axios.get("https://opentdb.com/api.php", {
 		params: {
 			amount: amount,
@@ -24,7 +24,7 @@ async function fetch(amount: number, category: string): Promise<{questions: stri
 		}
 	});
 
-	const questions = response.data.results.map((q: any) => atob(q.question));
+	const questions = response.data.results.map((q: any) => ({question: atob(q.question), real_answer: atob(q.correct_answer)}));
 	const answers = response.data.results.map((q: any) => q.correct_answer).concat(
 		...response.data.results.map((q: any) => q.incorrect_answers)
 	).map((a: string) => atob(a));
@@ -43,7 +43,7 @@ program
 	.parse(process.argv);
 
 async function main() {
-	let totalQuestions: string[] = [];
+	let totalQuestions: {question: string, real_answer: string}[] = [];
 	let totalAnswers: string[] = [];
 
 	for (let c of program.category) {

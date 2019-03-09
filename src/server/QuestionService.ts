@@ -4,7 +4,7 @@ import {Simulate} from "react-dom/test-utils";
 
 const readFile = util.promisify(fs.readFile);
 
-let data = {
+let data: {questions: {question: string, real_answer: string}[], answers: string[]} = {
 	questions: [],
 	answers: []
 };
@@ -30,6 +30,6 @@ export default class QuestionService {
 			}
 		}
 
-		return {question, answers};
+		return {question: question.question, answers};
 	}
 }
