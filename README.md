@@ -1,5 +1,10 @@
 # Majority
 
+![Preview of Majority](preview.gif)
+
+Majority is a multiplayer game where players are faced with questions and totally random answers.
+The goal is to guess which answers will be picked the _majority_ of the players.
+
 ## Deploy on Heroku
 
 ```bash
