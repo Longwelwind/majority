@@ -53,8 +53,6 @@ export default class GameClient {
 	onMessage(event: MessageEvent) {
 		const packet: ServerPacket = JSON.parse(event.data);
 
-		console.log(packet);
-
 		if (packet.type == "authenticate") {
 			this.selfPlayer = {
 				id: packet.id,
