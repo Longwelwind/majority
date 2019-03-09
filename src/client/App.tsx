@@ -33,7 +33,7 @@ export default class App extends Component<AppProps> {
 							"Joining a game"
 						)
 					) : (this.getConnectionState() == ConnectionState.DISCONNECTED || this.getConnectionState() == ConnectionState.ERROR_CONNECTING) ? (
-						"Error connecting to server"
+						"Error connecting to server. Please refresh the page to reconnect"
 					) : ""}
 				</Grid>
 				<div style={{flexGrow: 1}}/>
