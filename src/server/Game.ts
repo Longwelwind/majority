@@ -124,6 +124,11 @@ export default class Game {
 
 			this.removePlayer(player);
 		} else if (packet.type == "answer-question") {
+			if (typeof packet.answer != "number") {
+				this.logger.warn("packet didn't contain answer", {packet: packet});
+				return;
+			}
+
 			if (this.state.type != GameStateType.QUESTION) {
 				this.logger.warn("answer-question received when game was in wrong state", {
 					playerId: player.id,

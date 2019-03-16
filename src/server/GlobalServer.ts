@@ -48,6 +48,17 @@ export default class GlobalServer {
 			this.logger.warn("couldn't parse JSON of message", {packet: message});
 			return;
 		}
+
+		if (!(packet instanceof Object)) {
+			this.logger.warn("packet is not an Object", {packet: packet});
+			return;
+		}
+
+		if (typeof packet.type != "string") {
+			this.logger.warn("packet has not type", {packet: packet});
+			return;
+		}
+
 		if (packet.type == "ping") {
 			client.send(JSON.stringify({
 				type: "pong"
